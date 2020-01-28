@@ -1,0 +1,22 @@
+# video recorder compose file
+# Example start by setting RUN_AS to current user id/group
+# Make sure the RUN_AS user has write permission to the data directory mapped
+## RUN_AS=$(id -u):$(id -g) docker-compose up
+version: '3.7'
+services:
+  vire:
+    image: jayee/vire
+    build:
+      context: .
+      dockerfile: src/main/docker/Dockerfile.jvm-j9
+    init: true
+    container_name: vire
+    restart: always
+    ports:
+      - "8181:8080"
+    user: ${RUN_AS}
+    environment:
+      - VIRE_STREAMS=rtsp://camera-ip:554/stream1
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/data
