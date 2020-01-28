@@ -8,7 +8,7 @@ The recordings can be started and stopped by using the REST service:
 >GET host:8181/record/start  
 >GET host:8181/record/stop
 
-##Install
+## Install
 
 The service is preferable run with docker/docker-compose. For example
 
